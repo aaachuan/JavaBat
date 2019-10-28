@@ -135,6 +135,7 @@ C:\Users\Administrator>
 ```
 
 运行完后会创建一个标准结构的maven项目，`C:\Users\Administrator\mavenj2se\pom.xml`：
+
 ```
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
@@ -154,10 +155,10 @@ C:\Users\Administrator>
     </dependency>
   </dependencies>
 </project>
-
 ```
 
 `C:\Users\Administrator\mavenj2se\src\main\java\com\how2java\App.java`：
+
 ```
 package com.how2java;
 
@@ -172,8 +173,10 @@ public class App
         System.out.println( "Hello World!" );
     }
 }
+```
 
 `C:\Users\Administrator\mavenj2se\src\test\java\com\how2java\AppTest.java`：
+
 ```
 package com.how2java;
 

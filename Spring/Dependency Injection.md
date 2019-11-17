@@ -65,3 +65,4 @@ public class BraveKnightTest {
 }
 ```
 上面使用`mock`框架`Mockito`创建一个`Quest`接口的`mock`实现，通过这个`mock`对象，就可以创建一个新的`BraveKnight`实例，并通过构造器注入这个`mock Quest`。当调用`embarkOnQuest()`方法时，可以验证`Quest`的`mock`实现的`embark()`方法仅仅被调用了一次。
+...

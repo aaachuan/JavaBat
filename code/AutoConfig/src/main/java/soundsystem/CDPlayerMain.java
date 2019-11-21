@@ -8,11 +8,9 @@ public class CDPlayerMain {
 	public static void main(String[] args) {
 		ApplicationContext context = new AnnotationConfigApplicationContext(soundsystem.CDPlayerConfig.class);
 	    
-	    CompactDisc cd = context.getBean(SgtPeppers.class);
+	    CompactDisc cd = context.getBean(CompactDisc.class);
         cd.play();
-        
-        CompactDisc cd1 = context.getBean(AnotherLonelyNight.class);
-        cd1.play();    
+ 
 	}
 
 }

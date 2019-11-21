@@ -1,6 +1,6 @@
-### Maven in action
+## Maven in action
 
-#### create simple project
+### create simple project
 
 ```
 C:\Users\Administrator\maven\examples>mvn archetype:create -DgroupId=org.sonatyp
@@ -67,7 +67,7 @@ simple/pom.xml
       /src/test
           /test/java
 ```
-#### construct simple project：
+### construct simple project
 ```
 C:\Users\Administrator\maven\examples>cd simple
 

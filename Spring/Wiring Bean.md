@@ -141,6 +141,93 @@ Exception in thread "main" org.springframework.beans.factory.NoUniqueBeanDefinit
 ```
 一种解决方案是上面的`@Primary`注解，将这个bean设置为首选。
 
+因为很多对象会依赖其他的对象才能完成任务，所以，需要一种方法能够将组件扫描得到的bean和它们的依赖转配在一起，要进行自动装配，可以使用`@Autowired`注解。
+
+```
+package soundsystem;
+
+public interface MediaPlayer {
+
+  void play();
+
+}
+```
+
+```
+package soundsystem;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
+public class CDPlayer implements MediaPlayer {
+  private  CompactDisc cd;
+  
+  @Autowired
+  public CDPlayer(CompactDisc cd) {
+    this.cd = cd;
+  }
+  
+  @Autowired
+  public void setCompactDisc(CompactDisc cd){
+	  this.cd = cd;
+  }
+
+  @Autowired
+  public void insertDisc(CompactDisc cd){
+	  this.cd = cd;
+  }
+  
+  public void play() {
+    cd.play();
+  }
+
+}
+```
+
+```
+package soundsystem;
+
+import static org.junit.Assert.*;
+
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.contrib.java.lang.system.SystemOutRule;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes=CDPlayerConfig.class)
+public class CDPlayerTests {
+
+@Rule
+public final SystemOutRule log = new SystemOutRule().enableLog();
+
+@Autowired
+private MediaPlayer player;
+
+@Autowired
+private CompactDisc cd;
+
+@Test
+public void cdShouldNotBeNull() {
+  assertNotNull(cd);
+}
+
+@Test
+public void play() {
+  player.play();
+ // System.out.println(log.getLog());
+  assertEquals(
+      "Playing Sgt. Pepper's Lonely Hearts Club Band by The Beatles", 
+      log.getLog());
+
+}
+
+}
+
+```
 
 
 

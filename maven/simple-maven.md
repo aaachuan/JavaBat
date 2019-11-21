@@ -1,6 +1,6 @@
 ## Maven in action
 
-### create simple project
+### Create Simple Project
 
 ```
 C:\Users\Administrator\maven\examples>mvn archetype:create -DgroupId=org.sonatyp
@@ -67,7 +67,7 @@ simple/pom.xml
       /src/test/
           /test/java
 ```
-### construct simple project
+### Build Simple Project
 ```
 C:\Users\Administrator\maven\examples>cd simple
 
@@ -141,3 +141,33 @@ C:\Users\Administrator\maven\examples\simple>java -cp target/simple-1.0-SNAPSHOT
 Hello World!
 ```
 
+### Simple Project Object Model(POM)
+
+simple项目的pom.xml
+```
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.sonatype.mavenbook.ch03</groupId>
+  <artifactId>simple</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>simple</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>
+```

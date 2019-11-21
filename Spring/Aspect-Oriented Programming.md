@@ -111,3 +111,7 @@ Tee hee hee, the brave knight did embark on a quest!
 
 ```
 首先，`Minstrel`仍然是POJO，没有任何代码表明它要被作为一个使用。其次，`Minstrel`可以被运用到`BraveKnight`中，而`BraveKnight`不需要显示调用它，`BraveKnight`完全不知道`Minstrel`的存在。
+
+关于AspectJ依赖的问题：
+
+[SpringFramework: instantiation exception](https://stackoverflow.com/questions/18335887/springframework-instantiation-exception)

@@ -64,7 +64,7 @@ simple/pom.xml
       /src/
       /src/main/
           /main/java
-      /src/test
+      /src/test/
           /test/java
 ```
 ### construct simple project

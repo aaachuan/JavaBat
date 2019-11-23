@@ -19,12 +19,20 @@ public class CDPlayerTest {
 
   @Autowired
   private MediaPlayer player;
+  
+  @Autowired
+  private CompactDisc cd;
+  
+  @Test
+  public void cdShouldNotBeNull(){
+	  assertNotNull(cd);
+  }
 
   @Test
   public void play() {
     player.play();
     assertEquals(
-        "Playing Sgt. Pepper's Lonely Hearts Club Band by The Beatles\n", 
+        "Playing Sgt. Pepper's Lonely Hearts Club Band by The Beatles", 
         log.getLog());
   }
 

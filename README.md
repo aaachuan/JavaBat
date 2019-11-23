@@ -13,4 +13,5 @@
   - [Autowiring](https://github.com/aaachuan/Java-Bat/blob/master/Spring/Wiring%20Bean.md)
     - [CodeSample](https://github.com/aaachuan/Java-Bat/tree/master/code/AutoConfig)
   - [JavaConfig](https://github.com/aaachuan/Java-Bat/blob/master/Spring/JavaConfig.md)
+    - [CodeSample](https://github.com/aaachuan/Java-Bat/tree/master/code/JavaConfig)
   - [XmlConfig](https://github.com/aaachuan/Java-Bat/blob/master/Spring/XmlConfig.md)

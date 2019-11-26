@@ -43,5 +43,5 @@ Note that the I/O libraries from stdlib.jar are now contained in algs4.jar, so y
 ```
 stdlib.jar的包名是default，所以编码时包都是导入不进来的。。。
 
-(关于eclipse的重定向输入文件)[https://stackoverflow.com/questions/31234646/redirect-stdin-from-a-file-in-eclipse-with-run-configuration/31285746]
+[关于eclipse的重定向输入文件](https://stackoverflow.com/questions/31234646/redirect-stdin-from-a-file-in-eclipse-with-run-configuration/31285746)
 

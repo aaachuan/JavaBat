@@ -88,4 +88,4 @@ public static Integer valueOf(int i) {
     System.out.println("u==v?" + (u==v));    //false
 ```
 
-valueOf方法会自动调用IntegerCache这个类,IntegerCache初始化后内存中就有Integer缓冲池cache[]了。所以new Integer(10)表示在堆内存中创建对象，而Integer v = 10;这句是自动装箱,得到的是Integer缓冲池中的对象,是这句代码return IntegerCache.cache[10 + 128],明显a和b的地址是不一样的,不是同一个对象。java使用该机制是为了达到最小化数据输入和输出的目的,这是一种优化措施,提高效率。
+valueOf方法会自动调用IntegerCache这个类,IntegerCache初始化后内存中就有Integer缓冲池cache[]了。所以new Integer(10)表示在堆内存中创建对象，而Integer v = 10;这句是自动装箱，得到的是Integer缓冲池中的对象，是这句代码return IntegerCache.cache[10 + 128]，明显a和b的地址是不一样的，不是同一个对象。java使用该机制是为了达到最小化数据输入和输出的目的，这是一种优化措施，提高效率。

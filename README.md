@@ -1,6 +1,14 @@
-## Java-Bat
+# Java-Bat
 
-### Spring
+## Java
+
+### JavaBasic
+
+#### DataType
+- [AutoBoxing and Unboxing](https://github.com/aaachuan/Java-Bat/blob/master/Java/JavaBasic/DataType/AutoBoxing%20and%20UnBoxing.md)
+- [IntegerCache](https://github.com/aaachuan/Java-Bat/blob/master/Java/JavaBasic/DataType/IntegerCache.md)
+
+## Spring
 - Dependency Injection
   - [Dependency Injection](https://github.com/aaachuan/Java-Bat/blob/master/Spring/Dependency%20Injection.md)
   - [CodeSample](https://github.com/aaachuan/Java-Bat/tree/master/code/DependencyInjection)
@@ -24,6 +32,6 @@
   - [Autowiring and ambiguity]()
     - [CodeSample]()
 
-### Maven
+## Maven
 - [Maven QuickStart](https://github.com/aaachuan/Java-Bat/blob/master/maven/cmd-maven.md)
 - [Simple's Project Object Model(POM)](https://github.com/aaachuan/Java-Bat/blob/master/maven/simple-maven.md)

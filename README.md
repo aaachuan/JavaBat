@@ -18,8 +18,8 @@
     - [CodeSample](https://github.com/aaachuan/Java-Bat/tree/master/code/XmlConfig)
 - Advanced Wiring
   - [Spring Profiles]()
-    - [CodeSample]()
+    - [CodeSample](https://github.com/aaachuan/Java-Bat/tree/master/code/Profiles)
   - [Conditional Bean]()
-    - [CodeSample]()
+    - [CodeSample](https://github.com/aaachuan/Java-Bat/tree/master/code/Conditional)
   - [Autowiring and ambiguity]()
     - [CodeSample]()

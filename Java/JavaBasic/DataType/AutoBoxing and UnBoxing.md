@@ -71,7 +71,17 @@ Integer sum = new Integer(result);
 28743ns
 649291ns
 ```
-这个原因很大概率和valueOf()的IntegerCache有关。
+这个原因很大概率和valueOf()的IntegerCache有关。（挖个坑）
+
+另一个需要避免的问题就是混乱使用对象和原始数据值，一个具体的例子就是当我们在一个原始数据值与一个对象进行比较时，如果这个对象没有进行初始化或者为Null，在自动拆箱过程中obj.xxxValue，会抛出NullPointerException,如下面的代码
+```
+Integer count = null;
+
+		//NullPointerException on unboxing
+		if( count <= 0){
+		  System.out.println("Count is not started yet");
+		}
+```
 
 Ref:
 

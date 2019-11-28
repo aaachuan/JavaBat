@@ -72,3 +72,7 @@ Integer sum = new Integer(result);
 649291ns
 ```
 这个原因很大概率和valueOf()的IntegerCache有关。
+
+Ref:
+
+[Autoboxing and Unboxing](https://docs.oracle.com/javase/tutorial/java/data/autoboxing.html)

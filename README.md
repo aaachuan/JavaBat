@@ -8,8 +8,8 @@
   - [AutoBoxing and Unboxing](https://github.com/aaachuan/Java-Bat/blob/master/Java/JavaBasic/DataType/AutoBoxing%20and%20UnBoxing.md)
   - [IntegerCache](https://github.com/aaachuan/Java-Bat/blob/master/Java/JavaBasic/DataType/IntegerCache.md)
 - String
-  - Immutable
-  - String pool
+  - [Immutable](https://github.com/aaachuan/Java-Bat/blob/master/Java/JavaBasic/String/Immutable.md)
+  - [String pool](https://github.com/aaachuan/Java-Bat/blob/master/Java/JavaBasic/String/String%20pool.md)
 
 ## Spring
 - Dependency Injection

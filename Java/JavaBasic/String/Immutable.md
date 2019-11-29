@@ -65,7 +65,7 @@ public final class String
 ## Immutable的好处
 
 ### String pool的需要
-JVM为了提高性能和减少内存的开销，在实例化字符串的时候进行了一些优化：使用String pool常量池。如果一个对象已经被创建过，那么新的引用会指向String pool的对象。由于String的不可变性可以十分肯定String pool中一定不存在两个相同的字符串。
+JVM为了提高性能和减少内存的开销，在实例化字符串的时候进行了一些优化：使用String pool常量池。如果一个对象已经被创建过，那么新的引用会指向String pool（这里说得笼统些）。由于String的不可变性可以十分肯定String pool中一定不存在两个相同的字符串。
 ``` 
                                                _________________
               __________                      |      HEAP       |

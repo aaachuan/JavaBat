@@ -77,10 +77,10 @@ Integer sum = new Integer(result);
 ```
 Integer count = null;
 
-		//NullPointerException on unboxing
-		if( count <= 0){
-		  System.out.println("Count is not started yet");
-		}
+//NullPointerException on unboxing
+if( count <= 0){
+	System.out.println("Count is not started yet");
+}
 ```
 
 Ref:

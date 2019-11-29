@@ -80,3 +80,28 @@ JVM为了提高性能和减少内存的开销，在实例化字符串的时候�
                                               |_________________|
  
 ``` 
+String pool涉及的原理比较多，版本间之间的String pool位置及相应策略也有变化，先占个坑。
+### 缓存hashcode
+String的hashcode经常被使用到，例如在HashMap和HashSet的场景下。String的不可变性保证hashcode初次计算后的值便不可变，所以不必重复计算hashcode。
+像上面的hash：
+```
+ /** Cache the hash code for the string */
+    private int hash; // Default to 0
+```
+### 安全性
+String类型经常作为Java中很多类的参数，如network connection，open files等。如果String是可变的，那么一个连接或者文件标识将会改变而造成安全问题。
+```
+boolean connect(string s){
+    if (!isSecure(s)) { 
+throw new SecurityException(); 
+}
+    //here will cause problem, if s is changed before this by using other references.    
+    causeProblem(s);
+}
+```
+### 天生线程安全
+String 不可变性天生具备线程安全，可以在多个线程中安全地使用，减少了同步机制的需要。
+
+Ref：
+
+[Why String is immutable in Java?](https://www.programcreek.com/2013/04/why-string-is-immutable-in-java/)

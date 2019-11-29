@@ -31,6 +31,7 @@
     - [CodeSample](https://github.com/aaachuan/Java-Bat/tree/master/code/Conditional)
   - [Autowiring and ambiguity]()
     - [CodeSample]()
+- Aspect-oriented Spring
 
 ## Maven
 - [Maven QuickStart](https://github.com/aaachuan/Java-Bat/blob/master/maven/cmd-maven.md)

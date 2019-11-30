@@ -160,7 +160,7 @@ n:(Z)V
 ```
 照道理，s3的过程应该是String s3 = new StringBuilder("a").append(new String("c")).toString();但是这边反编译却是有两次append...
 
-渣渣
+渣渣...本想看下深入Java虚拟机第二章来合理梳理下String创建对象和String pool之间的过程，没想到问题点还是太多了，越看越迷糊了，只能又先挖个坑了。
 
 Ref：
 

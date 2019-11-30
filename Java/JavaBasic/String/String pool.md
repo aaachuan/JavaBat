@@ -35,4 +35,135 @@ Ref:
 
 ## String pool
 
+String对象创建的方式有两种，一种是字面量形式，形如`String s = "ac"`，另一种是使用new标准的构造对象，`String s = new String("ac")`。两种方式其中内存占用和性能是有差别的，JVM为减少重复创建对象，引入了String pool。
 
+### 字面量创建
+
+```
+String s1 = "ac";
+String s2 = "ac";
+System.out.println(s1 == s2); // true
+```
+一开始`String s1 = "ac"`，JVM首先在String pool中找，发现不存在，会创建这个字符串对象，将刚创建的字符串reference放入String pool，并将引用返回给变量s1。紧接着，同样`String s2 = "ac"`的时候，JVM继续查找String pool，发现"ac"字符串对象存在，直接将"ac"的reference返回给s2.这里不会重新创建字符串对象。
+
+### new关键字创建
+```
+String s3 = new String("bb");
+String s4 = new String("bb");
+System.out.println(s3 == s4); //false
+```
+当使用new来构造字符串对象的时候，不管String pool中有没有相同内容对象的reference，新的字符串对象都会创建。输出结果为false表示两个变量指向的是不同的对象。
+
+### intern()
+```
+    /**
+     * Returns a canonical representation for the string object.
+     * <p>
+     * A pool of strings, initially empty, is maintained privately by the
+     * class {@code String}.
+     * <p>
+     * When the intern method is invoked, if the pool already contains a
+     * string equal to this {@code String} object as determined by
+     * the {@link #equals(Object)} method, then the string from the pool is
+     * returned. Otherwise, this {@code String} object is added to the
+     * pool and a reference to this {@code String} object is returned.
+     * <p>
+     * It follows that for any two strings {@code s} and {@code t},
+     * {@code s.intern() == t.intern()} is {@code true}
+     * if and only if {@code s.equals(t)} is {@code true}.
+     * <p>
+     * All literal strings and string-valued constant expressions are
+     * interned. String literals are defined in section 3.10.5 of the
+     * <cite>The Java&trade; Language Specification</cite>.
+     *
+     * @return  a string that has the same contents as this string, but is
+     *          guaranteed to be from a pool of unique strings.
+     */
+    public native String intern();
+```
+```
+String s4 = s3.intern();
+System.out.println(s1 == s4); // true
+System.out.println(s3 == s4); // false
+```
+调用intern后，首先检查字符串常量池中是否有该对象的reference，如果存在，则将这个reference返回给变量，否则将reference加入并返回给变量。
+
+### key point
+String pool实现的条件就是String对象是不可变的，安全保证多个变量共享一个对象。
+
+还有一个比较重要的是String pool中存放的是reference还是Object？留坑。
+
+```
+String s1 = "ac";
+String s2 = "a" + "c";
+String s3 = "a" + new String("c");
+		
+System.out.println(s1 == s2); // true
+System.out.println(s1 == s3); // false
+```
+`javap -c StringTest`反编译字节码文件：
+```
+Compiled from "StringTest.java"
+public class StringTest {
+  public StringTest();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":
+()V
+       4: return
+
+  public static void main(java.lang.String[]);
+    Code:
+       0: ldc           #2                  // String ac
+       2: astore_1
+       3: ldc           #2                  // String ac
+       5: astore_2
+       6: new           #3                  // class java/lang/StringBuilder
+       9: dup
+      10: invokespecial #4                  // Method java/lang/StringBuilder."<
+init>":()V
+      13: ldc           #5                  // String a
+      15: invokevirtual #6                  // Method java/lang/StringBuilder.ap
+pend:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      18: new           #7                  // class java/lang/String
+      21: dup
+      22: ldc           #8                  // String c
+      24: invokespecial #9                  // Method java/lang/String."<init>":
+(Ljava/lang/String;)V
+      27: invokevirtual #6                  // Method java/lang/StringBuilder.ap
+pend:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      30: invokevirtual #10                 // Method java/lang/StringBuilder.to
+String:()Ljava/lang/String;
+      33: astore_3
+      34: getstatic     #11                 // Field java/lang/System.out:Ljava/
+io/PrintStream;
+      37: aload_1
+      38: aload_2
+      39: if_acmpne     46
+      42: iconst_1
+      43: goto          47
+      46: iconst_0
+      47: invokevirtual #12                 // Method java/io/PrintStream.printl
+n:(Z)V
+      50: getstatic     #11                 // Field java/lang/System.out:Ljava/
+io/PrintStream;
+      53: aload_1
+      54: aload_3
+      55: if_acmpne     62
+      58: iconst_1
+      59: goto          63
+      62: iconst_0
+      63: invokevirtual #12                 // Method java/io/PrintStream.printl
+n:(Z)V
+      66: return
+}
+```
+照道理，s3的过程应该是String s3 = new StringBuilder("a").append(new String("c")).toString();但是这边反编译却是有两次append...
+
+渣渣
+
+Ref：
+
+[What is the Java string pool and how is “s” different from new String(“s”)?](https://stackoverflow.com/questions/2486191/what-is-the-java-string-pool-and-how-is-s-different-from-new-strings)
+
+[深入解析String#intern](https://tech.meituan.com/2014/03/06/in-depth-understanding-string-intern.html)

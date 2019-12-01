@@ -10,6 +10,8 @@
 - String
   - [Immutable](https://github.com/aaachuan/Java-Bat/blob/master/Java/JavaBasic/String/Immutable.md)
   - [String pool](https://github.com/aaachuan/Java-Bat/blob/master/Java/JavaBasic/String/String%20pool.md)
+- Operation
+  - [Parameter Passing](https://github.com/aaachuan/Java-Bat/blob/master/Java/JavaBasic/Operation/Parameter%20Passing.md)
 
 ## Spring
 - Dependency Injection

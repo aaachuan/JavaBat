@@ -71,3 +71,7 @@ After modifyPoint p =java.awt.Point[x=0,y=0]and i =10
 如果不想在传递modifyPoint时改变Point对象，有两种策略：
 - 对modifyPoint传递一个Point对象的clone
 - 让Point对象成为immutable
+
+Ref:
+
+[Practical Java: Programming Language Guide](https://dl.acm.org/citation.cfm?id=518796)

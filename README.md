@@ -12,7 +12,18 @@
   - [String pool](https://github.com/aaachuan/Java-Bat/blob/master/Java/JavaBasic/String/String%20pool.md)
 - Operation
   - [Parameter Passing](https://github.com/aaachuan/Java-Bat/blob/master/Java/JavaBasic/Operation/Parameter%20Passing.md)
-
+- Inheritance
+  - [Encapsulation and Access permission]()
+  - [Abstract class and Interface]()
+  - [this and super]()
+  - [Override and Overload]()
+- Object
+- Key Word
+- Reflection
+- Exception
+- Generics
+- Annotation
+- New highlights in Java version
 ## Spring
 - Dependency Injection
   - [Dependency Injection](https://github.com/aaachuan/Java-Bat/blob/master/Spring/Dependency%20Injection.md)

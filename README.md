@@ -13,7 +13,7 @@
 - Operation
   - [Parameter Passing](https://github.com/aaachuan/Java-Bat/blob/master/Java/JavaBasic/Operation/Parameter%20Passing.md)
 - Inheritance
-  - [Encapsulation and Access permission]()
+  - [Encapsulation and Access permission](https://github.com/aaachuan/Java-Bat/blob/master/Java/JavaBasic/Inheritance/Encapsulation%20and%20Access%20permission.md)
   - [Abstract class and Interface]()
   - [this and super]()
   - [Override and Overload]()

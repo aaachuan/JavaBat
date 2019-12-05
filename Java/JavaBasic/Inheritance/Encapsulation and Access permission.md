@@ -36,3 +36,51 @@ public class AccessExample {
 - 子类中可以增加自己特有的方法。
 - 当子类的方法重载父类的方法时，方法的前置条件（即方法的形参）要比父类方法的输入参数更宽松。
 - 当子类的方法实现父类的抽象方法时，方法的后置条件（即方法的返回值）要比父类更严格。
+
+几个访问权限修饰符中，`protected`无疑是最特殊的。`protected`的真正内涵有两点：
+- 相同package包的情况下，基类的protected成员是包内可见的，并且对子类可见；
+- 不同package包的情况下，若子类与基类不在同一包中，那么在子类中，子类实例可以访问其从基类继承而来的protected方法，而不能访问基类实例的protected方法。
+
+```
+package com.javabasic.inherit.abc;
+
+public class Father {
+
+	protected void hi() {
+		System.out.println("I am your father");
+	}
+}
+
+```
+
+```
+package com.javabasic.inherit.xyz;
+
+import com.javabasic.inherit.abc.Father;
+
+
+public class Main {
+
+	public static void main(String[] args) {
+		Son s = new Son();
+		s.hello();
+	}
+
+}
+
+
+class Son extends Father {
+	void hello() {
+		Father father = new Father();
+	//	father.hi();
+		this.hi();
+		super.hi();
+		
+		Son son = new Son();
+		son.hi();
+	}
+}
+```
+因为父子类不在同一个包下，Son类里面不能访问父类实例father的protected方法，但用Father继承而来的Son实例就可以访问。
+
+还有一个值得注意的是，不同包下，在子类中不能通过另一个子类引用访问共同基类的 protected 方法。

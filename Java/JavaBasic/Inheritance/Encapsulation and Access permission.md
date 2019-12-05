@@ -25,6 +25,42 @@ public class AccessExample {
     }
 }
 ```
+另外，如果不希望其他任何人对该类拥有访问权，可以把所有的构造器都指定为`private`的，从而阻止任何人创建该类的对象。这个时候，该类的对象就只能在其static成员内部进行创建，这种情形有点像单例模式：
+```
+public class SingleObject {
+ 
+   //创建 SingleObject 的一个对象
+   private static SingleObject instance = new SingleObject();
+ 
+   //让构造函数为 private，这样该类就不会被实例化
+   private SingleObject(){}
+ 
+   //获取唯一可用的对象
+   public static SingleObject getInstance(){
+      return instance;
+   }
+ 
+   public void showMessage(){
+      System.out.println("Hello World!");
+   }
+}
+```
+```
+public class SingletonPatternDemo {
+   public static void main(String[] args) {
+ 
+      //不合法的构造函数
+      //编译时错误：构造函数 SingleObject() 是不可见的
+      //SingleObject object = new SingleObject();
+ 
+      //获取唯一可用的对象
+      SingleObject object = SingleObject.getInstance();
+ 
+      //显示消息
+      object.showMessage();
+   }
+}
+```
 值得注意的是，如果子类的方法重写了父类的方法，那么子类中该方法的访问级别不允许低于父类的访问级别。这是为了确保可以使用父类实例的地方都可以使用子类实例，也就是确保满足里氏替换原则。
 
 里氏替换原则：
@@ -84,3 +120,11 @@ class Son extends Father {
 因为父子类不在同一个包下，Son类里面不能访问父类实例father的protected方法，但用Father继承而来的Son实例就可以访问。
 
 还有一个值得注意的是，不同包下，在子类中不能通过另一个子类引用访问共同基类的 protected 方法。
+
+Ref:
+
+[Effective java](https://www.amazon.com/Effective-Java-Joshua-Bloch/dp/0134685997)
+
+[Singleton Pattern](https://www.runoob.com/design-pattern/singleton-pattern.html)
+
+[Liskov substitution principle](https://en.wikipedia.org/wiki/Liskov_substitution_principle)

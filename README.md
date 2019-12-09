@@ -14,10 +14,11 @@
   - [Parameter Passing](https://github.com/aaachuan/Java-Bat/blob/master/Java/JavaBasic/Operation/Parameter%20Passing.md)
 - Inheritance
   - [Encapsulation and Access permission](https://github.com/aaachuan/Java-Bat/blob/master/Java/JavaBasic/Inheritance/Encapsulation%20and%20Access%20permission.md)
-  - [Abstract class and Interface]()
-  - [this and super]()
-  - [Override and Overload]()
+  - [Abstract class and Interface](https://github.com/aaachuan/Java-Bat/blob/master/Java/JavaBasic/Inheritance/Abstract%20class%20and%20Interface.md)
+  - [this and super](https://github.com/aaachuan/Java-Bat/blob/master/Java/JavaBasic/Inheritance/this%20and%20super.md)
+  - [Override and Overload](https://github.com/aaachuan/Java-Bat/blob/master/Java/JavaBasic/Inheritance/Override%20and%20Overload.md)
 - Object
+  - [Obejct method](https://github.com/aaachuan/Java-Bat/blob/master/Java/JavaBasic/Object/Object%20method.md)
 - Key Word
 - Reflection
 - Exception

@@ -27,7 +27,7 @@
 - New highlights in Java version
 
 ### Java Concurrency
-
+- [The Art of Java Concurrency Programming](https://github.com/aaachuan/Java-Bat/blob/master/Java/Concurrency/The%20Art%20of%20Java%20Concurrency%20Programming.md)
 
 ## Spring
 - Dependency Injection

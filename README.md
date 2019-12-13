@@ -2,7 +2,7 @@
 
 ## Java
 
-### JavaBasic
+### Java Basic
 
 - DataType
   - [AutoBoxing and Unboxing](https://github.com/aaachuan/Java-Bat/blob/master/Java/JavaBasic/DataType/AutoBoxing%20and%20UnBoxing.md)
@@ -25,6 +25,10 @@
 - Generics
 - Annotation
 - New highlights in Java version
+
+### Java Concurrency
+
+
 ## Spring
 - Dependency Injection
   - [Dependency Injection](https://github.com/aaachuan/Java-Bat/blob/master/Spring/Dependency%20Injection.md)

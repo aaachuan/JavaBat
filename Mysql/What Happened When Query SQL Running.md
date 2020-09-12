@@ -54,4 +54,27 @@ mysql> show processlist;
 +----+------+-----------------+------+---------+------+----------+------------------+
 4 rows in set (0.00 sec)
 ```
-
+根据断开连接的时机，连接分为`长连接`和`短连接`。
+数据库里面，长连接是指连接成功后，如果客户端持续有请求，则一直使用同一个连接。短连接则是指每次执行完很少的几次查询就断开连接，下次查询再重新建立一个。
+接下来先感受下mysql的各种超时参数(挖坑):
+```
+mysql> show variables like '%timeout%';
++-----------------------------+----------+
+| Variable_name               | Value    |
++-----------------------------+----------+
+| connect_timeout             | 10       |
+| delayed_insert_timeout      | 300      |
+| have_statement_timeout      | YES      |
+| innodb_flush_log_at_timeout | 1        |
+| innodb_lock_wait_timeout    | 50       |
+| innodb_rollback_on_timeout  | OFF      |
+| interactive_timeout         | 28800    |
+| lock_wait_timeout           | 31536000 |
+| net_read_timeout            | 30       |
+| net_write_timeout           | 60       |
+| rpl_stop_slave_timeout      | 31536000 |
+| slave_net_timeout           | 60       |
+| wait_timeout                | 28800    |
++-----------------------------+----------+
+13 rows in set, 1 warning (0.01 sec)
+```

@@ -38,6 +38,15 @@ mysql> SELECT DISTINCT connection_type from performance_schema.threads where con
 mysql -uroot
 ```
 如果在MySQL本机使用这种方式连接MySQL数据库，默认使用Unix Sockets。
+```
+mysql> SELECT DISTINCT connection_type from performance_schema.threads where connection_type is not null;
++-----------------+
+| connection_type |
++-----------------+
+| Socket          |
++-----------------+
+1 row in set (0.00 sec)
+```
 
 正常情况下，与服务端建立连接，在完成TCP握手后，连接器需要开始身份认证（user&password），认证过后会到权限表里面查出当前用户拥有的权限。
 

@@ -90,4 +90,73 @@ mysql> show variables like '%timeout%';
 13 rows in set, 1 warning (0.01 sec)
 ```
 ## 查询缓存（命中则直接返回结果）
-...
+MySQL在查询缓存保存查询返回的完整结果。当查询命中该缓存，MySQL会立刻返回结果，跳过解析、优化和执行阶段。缓存存放在一个引用表，通过一个哈希值引用，包含了查询本身、当前需要查询的数据库、客户端协议的版本等一些可能会影响返回结果的信息。当查询的表发生变化，那个和这个表相关的所有缓存数据都会失效。（有点坑啊有木有...）
+
+MySQL8.0开始直接把查询缓存的功能卸掉了。。。
+```
+mysql> SHOW GLOBAL VARIABLES LIKE 'query_cache%';
++------------------------------+---------+
+| Variable_name                | Value   |
++------------------------------+---------+
+| query_cache_limit            | 1048576 |
+| query_cache_min_res_unit     | 4096    |
+| query_cache_size             | 1048576 |
+| query_cache_type             | OFF     |
+| query_cache_wlock_invalidate | OFF     |
++------------------------------+---------+
+5 rows in set (0.00 sec)
+```
+```
+query_cache_limit :  MySQL能够缓存的最大查询结果；如果某查询的结果大小大于此值，则不会被缓存；
+query_cache_min_res_unit : 查询缓存中分配内存的最小单位；(注意：此值通常是需要调整的，此值被调整为接近所有查询结果的平均值是最好的)
+                           计算单个查询的平均缓存大小：（query_cache_size-Qcache_free_memory）/Qcache_queries_in_cache
+query_cache_size : 查询缓存的总体可用空间，单位为字节；其必须为1024的倍数；
+query_cache_type: 查询缓存类型；是否开启缓存功能，开启方式有三种{ON|OFF|DEMAND}；
+query_cache_wlock_invalidate : 当其它会话锁定此次查询用到的资源时，是否不能再从缓存中返回数据；（OFF表示可以从缓存中返回数据）
+```
+```
+
+mysql> SHOW  GLOBAL STATUS  LIKE  'Qcache%';
++-------------------------+---------+
+| Variable_name           | Value   |
++-------------------------+---------+
+| Qcache_free_blocks      | 1       | #查询缓存中的空闲块
+| Qcache_free_memory      | 1031832 | #查询缓存中尚未使用的空闲内存空间
+| Qcache_hits             | 0       | #缓存命中次数
+| Qcache_inserts          | 0       | #向查询缓存中添加缓存记录的条数
+| Qcache_lowmem_prunes    | 0       | #表示因缓存满了而不得不清理部分缓存以存储新的缓存，这样操作的次数。若此数值过大，则表示缓存空间太小了。
+| Qcache_not_cached       | 5       | #没能被缓存的次数
+| Qcache_queries_in_cache | 0       | #此时仍留在查询缓存的缓存个数
+| Qcache_total_blocks     | 1       | #共分配出去的块数
++-------------------------+---------+
+8 rows in set (0.00 sec)
+
+```
+衡量缓存是否有效：
+```
+mysql> SHOW GLOBAL STATUS WHERE Variable_name='Qcache_hits' OR Variable_name='Com_select';
++---------------+-------+
+| Variable_name | Value |
++---------------+-------+
+| Com_select    | 5     |
+| Qcache_hits   | 0     |
++---------------+-------+
+2 rows in set (0.00 sec)
+```
+缓存命中率：Qcache_hits/(Qcache_hits+Com_select)
+```
+mysql> SHOW GLOBAL STATUS WHERE Variable_name='Qcache_hits' OR Variable_name='Qcache_inserts';
++----------------+-------+
+| Variable_name  | Value |
++----------------+-------+
+| Qcache_hits    | 0     |
+| Qcache_inserts | 0     |
++----------------+-------+
+2 rows in set (0.00 sec)
+```
+“命中和写入”的比率: Qcache_hits/Qcache_inserts # 如果此比值大于3:1, 说明缓存也是有效的；如果高于10:1，相当理想；
+
+题外话：存储引擎层-innodb buffer pool
+## 分析器（词法分析、语法分析）
+## 优化器（执行计划生成，索引选择）
+## 执行器（操作引擎，返回结果）

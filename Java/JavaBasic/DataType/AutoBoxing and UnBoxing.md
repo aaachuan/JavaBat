@@ -82,6 +82,31 @@ if( count <= 0){
 	System.out.println("Count is not started yet");
 }
 ```
+关于NullPointerException，看段有意思的代码：
+```
+      if(map==null) {
+              // do something.
+        } else {
+            try {
+
+                int count = (Integer) map.get("count");
+
+            } catch (NullPointerException e) {
+                // do something.
+            }
+        }
+```
+map这个变量，已经在上文判断是否为空指针了，map.get("count")也不会抛出空指针异常。为什么这里还要判断？
+
+1）map获得的值，有可能为null.
+
+2）null可以转换成所有类型，于是得到一个声明为Integer类型的变量，该变量实际上指向为空
+
+3）Integer转成int，发生拆箱，调用非静态的intValue()方法，而变量实际上为空，那么就会抛出空指针异常
+
+如何避免NullPointerException？
+```
+```
 
 Ref:
 

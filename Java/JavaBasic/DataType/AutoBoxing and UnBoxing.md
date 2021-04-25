@@ -117,6 +117,42 @@ String.ValueOf(xx) better than xx.toString()，因为
         return (obj == null) ? "null" : obj.toString();
     }
 ```
+使用null安全的方法和库，例如Apache的common lang 3工具类StringUtils
+```
+    /**
+     * <p>Checks if a CharSequence is empty ("") or null.</p>
+     *
+     * <pre>
+     * StringUtils.isEmpty(null)      = true
+     * StringUtils.isEmpty("")        = true
+     * StringUtils.isEmpty(" ")       = false
+     * StringUtils.isEmpty("bob")     = false
+     * StringUtils.isEmpty("  bob  ") = false
+     * </pre>
+     *
+     * <p>NOTE: This method changed in Lang version 2.0.
+     * It no longer trims the CharSequence.
+     * That functionality is available in isBlank().</p>
+     *
+     * @param cs  the CharSequence to check, may be null
+     * @return {@code true} if the CharSequence is empty or null
+     * @since 3.0 Changed signature from isEmpty(String) to isEmpty(CharSequence)
+     */
+    public static boolean isEmpty(final CharSequence cs) {
+        return cs == null || cs.length() == 0;
+    }
+```
+返回0长度的数组或集合，而不是null——Joshua Bloch-"effective java",54th.Collections类提供了方便的空List，Set和Map: Collections.EMPTY_LIST，Collections.EMPTY_SET，Collections.EMPTY_MAP
+```
+    public List<Cheese> getCheeses() {
+        return CheesesInStock.isEmpty() ? Collections.EMPTY_LIST : new ArrayList<>(CheesesInStock);
+    } 
+```
+使用annotation@NotNull 和 @Nullable
+
+另外一个就是本文主题相关的，避免不必要的AutoBoxing and UnBoxing
+
+Java 8的新特性，用Optional取代null
 
 Ref:
 

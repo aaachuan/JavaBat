@@ -14,6 +14,13 @@ new Integer(123) 与 Integer.valueOf(123) 的区别在于：
 - new Integer(123) 每次都会新建一个对象；
 - Integer.valueOf(123) 会使用缓存池中的对象，多次调用会取得同一个对象的引用。（当然，这和数值有一定的关联）
 
+在JDK9直接把new的构造方法过时，推荐使用valueOf()，合理利用缓存，提高程序性能
+```
+Integer(int value)	
+Deprecated. 
+It is rarely appropriate to use this constructor. The static factory valueOf(int) is generally a better choice, as it is likely to yield significantly better space and time performance.
+```
+
 把数值稍微修改下：
 ```
     Integer x = new Integer(128);

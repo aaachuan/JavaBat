@@ -106,6 +106,16 @@ map这个变量，已经在上文判断是否为空指针了，map.get("count")�
 
 如何避免NullPointerException？
 ```
+        Object o = null;
+        if("target".equals(o)) {
+            //better than if(o.equals("target"))
+        }
+```
+String.ValueOf(xx) better than xx.toString()，因为
+```
+    public static String valueOf(Object obj) {
+        return (obj == null) ? "null" : obj.toString();
+    }
 ```
 
 Ref:

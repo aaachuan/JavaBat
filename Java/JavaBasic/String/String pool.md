@@ -92,6 +92,9 @@ System.out.println(s3 == s4); // false
 String pool实现的条件就是String对象是不可变的，安全保证多个变量共享一个对象。
 
 还有一个比较重要的是String pool中存放的是reference还是Object？留坑。
+```
+这个是真的坑。看美团技术团队的实例图字符串常量池保存的就是Object的意思，但是一般理解上Object只在Heap中，所以保存的应该是reference。
+```
 
 ```
 String s1 = "ac";

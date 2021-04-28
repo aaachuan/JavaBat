@@ -72,6 +72,41 @@ After modifyPoint p =java.awt.Point[x=0,y=0]and i =10
 - 对modifyPoint传递一个Point对象的clone
 - 让Point对象成为immutable
 
+又说到immutable，又很容量联想到String的immutable的线程安全性。线程安全问题的根本原因在于多个线程同时访问一个共享资源。设计对象为immutable的方法有：
+- 类内部字段private和final修饰。
+- 不提供set方法。
+- 可以将set方法返回一个new对象。
+- 通过构造器初始化所有成员变量，引用类型的成员变量必须进行深拷贝(deep copy)。
+对于第三点，类似String类的replace()方法：
+```
+  public String replace(char oldChar, char newChar) {
+        if (oldChar != newChar) {
+            int len = value.length;
+            int i = -1;
+            char[] val = value; /* avoid getfield opcode */
+
+            while (++i < len) {
+                if (val[i] == oldChar) {
+                    break;
+                }
+            }
+            if (i < len) {
+                char buf[] = new char[len];
+                for (int j = 0; j < i; j++) {
+                    buf[j] = val[j];
+                }
+                while (i < len) {
+                    char c = val[i];
+                    buf[i] = (c == oldChar) ? newChar : c;
+                    i++;
+                }
+                return new String(buf, true);
+            }
+        }
+        return this;
+    }
+```
+深拷贝的例子：Guava包提供的ImmutableList是真正意义上的不可变集合，它实际上是对入参list进行了深拷贝。
 Ref:
 
 [Practical Java: Programming Language Guide](https://dl.acm.org/citation.cfm?id=518796)

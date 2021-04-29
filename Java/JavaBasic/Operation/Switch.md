@@ -207,3 +207,6 @@ public class com.aaachuan.swit.SwitchTest {
                 ?
                 tableswitch : lookupswitch;
 ```
+## switch还是if...else?
+CPU分支预测...
+后面验证完再写

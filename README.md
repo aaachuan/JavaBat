@@ -12,6 +12,7 @@
   - [String pool](https://github.com/aaachuan/Java-Bat/blob/master/Java/JavaBasic/String/String%20pool.md)
 - Operation
   - [Parameter Passing](https://github.com/aaachuan/Java-Bat/blob/master/Java/JavaBasic/Operation/Parameter%20Passing.md)
+  - [Type Cast](https://github.com/aaachuan/Java-Bat/blob/master/Java/JavaBasic/Operation/Type%20Cast.md)
 - Inheritance
   - [Encapsulation and Access permission](https://github.com/aaachuan/Java-Bat/blob/master/Java/JavaBasic/Inheritance/Encapsulation%20and%20Access%20permission.md)
   - [Abstract class and Interface](https://github.com/aaachuan/Java-Bat/blob/master/Java/JavaBasic/Inheritance/Abstract%20class%20and%20Interface.md)

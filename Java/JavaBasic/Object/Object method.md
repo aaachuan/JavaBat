@@ -226,3 +226,4 @@ Objects.equals(2,2L) //false
 		Objects.equals(z,((EqualExample)o).z);
 	}
 ```
+## hashCode()

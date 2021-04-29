@@ -166,3 +166,63 @@ public class EqualExample {
 }
 
 ```
+Java 7提供了更为合适的对象工具类Objects(java.util.Objects)
+```
+This class consists of static utility methods for operating on objects. These utilities include null-safe or null-tolerant methods for computing the hash code of an object, returning a string for an object, and comparing two objects.
+Since:
+1.7
+```
+例如空值判断可以由
+```
+if (obj!=null){
+    // 判断不等于空
+}
+if (obj==null){
+    // 判断等于空
+}
+```
+变成
+```
+if (Objects.nonNull(obj)){
+    // 判断不等于空
+}
+if (Objects.isNull(obj)){
+    // 判断等于空
+}
+```
+还有
+```
+public static <T> T requireNonNull(T obj) {
+        if (obj == null)
+            throw new NullPointerException();
+        return obj;
+    }
+```
+或者重载方法自定义空值报错
+```
+       public Foo(Bar bar, Baz baz) {
+           this.bar = Objects.requireNonNull(bar, "bar must not be null");
+           this.baz = Objects.requireNonNull(baz, "baz must not be null");
+       }
+       
+```
+话说回obj.equals(other)，如果obj为null也会抛出空指针异常，所以
+```
+public static boolean equals(Object a, Object b) {
+        return (a == b) || (a != null && a.equals(b));
+ }
+```
+但是不建议使用该方法判别基本数据类型，实际上也不应该:
+```
+Objects.equals(2,2L) //false
+```
+所以根据`Objects.equals(Object a,Object b)`方法，我们可以写出
+```
+	@Override
+	public boolean equals(Object o) {
+		return o instanceof EqualExample &&
+		Objects.equals(x,((EqualExample)o).x) &&
+		Objects.equals(y,((EqualExample)o).y) &&
+		Objects.equals(z,((EqualExample)o).z);
+	}
+```

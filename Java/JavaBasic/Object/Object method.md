@@ -52,6 +52,8 @@ public class Object {
     
     protected void finalize() throws Throwable { }
 ```
+Object类主要是为了扩展，非final方法都有一些通用约定，设计成被覆盖(equals、hashCode、toString、clone和finalize)。
+
 ## equals()
 当你创建一个类的时候，它自动继承自 Objcet 类。如果你不覆写 equals() ，你将会获得 Objcet 对象的 equals() 函数。默认情况下，这个函数会比较对象的引用。
 ```

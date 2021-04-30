@@ -229,3 +229,60 @@ Objects.equals(2,2L) //false
 	}
 ```
 ## hashCode()
+Object的equals()相等的情况下，hashCode的值一定也相同。但是hashCode值相同，却有可能equals()不等价，因为有可能出现哈希碰撞。
+
+通常，我们覆写equals()方法的时候，总是出于对象的域值相等才为真正的等价，即使他们的对象地址不一样。所以，当我们覆写equals()方法逻辑的时候同时需要复写hashCode()方法，不然我们覆写判断的equals()相等的情况下，Object默认的hashCode值却是不同的。
+```
+Map<PhoneNumber,String> m = new HashMap<>();
+m.put(new PhoneNumber(707, 867, 5309),"Jenny");
+m.get(new PhoneNumber(707, 867, 5309)); //null
+```
+所以我们需要重新设计哈希函数避开该问题，理想情况下，哈希函数应该尽量把集合中不相等的实例均匀分布所有可能的int值。
+```
+可以将每个域都当成 R 进制的某一位，然后组成一个 R 进制的整数。
+
+R 一般取 31，因为它是一个奇素数，如果是偶数的话，当出现乘法溢出，信息就会丢失，因为与 2 相乘相当于向左移一位，最左边的位丢失。并且一个数与 31 相乘可以转换成移位和减法：31*x == (x<<5)-x，编译器会自动进行这个优化。
+```
+Arrays的hashCode()方法：
+```
+
+    /**
+     * Returns a hash code based on the contents of the specified array.  If
+     * the array contains other arrays as elements, the hash code is based on
+     * their identities rather than their contents.  It is therefore
+     * acceptable to invoke this method on an array that contains itself as an
+     * element,  either directly or indirectly through one or more levels of
+     * arrays.
+     *
+     * <p>For any two arrays <tt>a</tt> and <tt>b</tt> such that
+     * <tt>Arrays.equals(a, b)</tt>, it is also the case that
+     * <tt>Arrays.hashCode(a) == Arrays.hashCode(b)</tt>.
+     *
+     * <p>The value returned by this method is equal to the value that would
+     * be returned by <tt>Arrays.asList(a).hashCode()</tt>, unless <tt>a</tt>
+     * is <tt>null</tt>, in which case <tt>0</tt> is returned.
+     *
+     * @param a the array whose content-based hash code to compute
+     * @return a content-based hash code for <tt>a</tt>
+     * @see #deepHashCode(Object[])
+     * @since 1.5
+     */
+    public static int hashCode(Object a[]) {
+        if (a == null)
+            return 0;
+
+        int result = 1;
+
+        for (Object element : a)
+            result = 31 * result + (element == null ? 0 : element.hashCode());
+
+        return result;
+    }
+```
+Objects提供的hashCode()方法就是调用Arrays的方法的：
+```
+    public static int hash(Object... values) {
+        return Arrays.hashCode(values);
+    }
+```
+ba因会引发数组的创建，以便传入数目可变的参数，如果参数中有基本类型还需要装箱和ba拆箱操作，所以直接采用这种方式的话性能不是很好。

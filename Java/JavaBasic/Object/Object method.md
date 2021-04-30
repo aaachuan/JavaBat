@@ -285,4 +285,8 @@ Objects提供的hashCode()方法就是调用Arrays的方法的：
         return Arrays.hashCode(values);
     }
 ```
-ba因会引发数组的创建，以便传入数目可变的参数，如果参数中有基本类型还需要装箱和ba拆箱操作，所以直接采用这种方式的话性能不是很好。
+因会引发数组的创建，以便传入数目可变的参数，如果参数中有基本类型还需要装箱和ba拆箱操作，所以直接采用这种方式的话性能不是很好。
+
+如果一个类是immutable，且计算hashCode的开销比较大，可以考虑把hashCode缓存在对象内部进行延迟初始化散列码，即hashCode被第一次调用的时候才初始化(lazily initialize)
+
+## toString()

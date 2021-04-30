@@ -290,3 +290,15 @@ Objects提供的hashCode()方法就是调用Arrays的方法的：
 如果一个类是immutable，且计算hashCode的开销比较大，可以考虑把hashCode缓存在对象内部进行延迟初始化散列码，即hashCode被第一次调用的时候才初始化(lazily initialize)
 
 ## toString()
+感觉没啥好说的。
+```
+    public String toString() {
+        return getClass().getName() + "@" + Integer.toHexString(hashCode());
+    }
+```
+## clone()
+在实现了Cloneable这个标记接口后就可以调用Object的clone()方法，标记接口还有如Serializable序列化接口。
+到clone()的基本实现里，JVM会去检测要clone的对象的类有没有被打上这个标记，有就让clone，没有就抛CloneNotSupportedException异常。
+```
+
+```

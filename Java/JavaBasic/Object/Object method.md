@@ -300,5 +300,16 @@ Objects提供的hashCode()方法就是调用Arrays的方法的：
 在实现了Cloneable这个标记接口后就可以调用Object的clone()方法，标记接口还有如Serializable序列化接口。
 到clone()的基本实现里，JVM会去检测要clone的对象的类有没有被打上这个标记，有就让clone，没有就抛CloneNotSupportedException异常。
 ```
-
+//example from effective java-13
+class PhoneNumber implements Cloneable {
+	...
+//Clone method for class with no references to mutable state
+    @Override
+    public PhoneNumber clone() {
+        try {
+            return (PhoneNumber) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new AssertionError(); //Can't happen
+        }
+}      
 ```

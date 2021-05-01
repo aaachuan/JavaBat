@@ -401,3 +401,6 @@ public class DeepCloneExample implements Cloneable {
     }
 }
 ```
+Hashtable
+
+序列化实现深拷贝

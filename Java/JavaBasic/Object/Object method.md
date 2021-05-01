@@ -313,3 +313,91 @@ class PhoneNumber implements Cloneable {
         }
 }      
 ```
+浅拷贝
+```
+package com.aaachuan.clones;
+
+public class ShallowCloneExample implements Cloneable {
+
+    private int[] arr;
+
+    public ShallowCloneExample() {
+        arr = new int[10];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = i;
+        }
+    }
+
+    public void set(int index, int value) {
+        arr[index] = value;
+    }
+
+    public int get(int index) {
+        return arr[index];
+    }
+
+    @Override
+    protected ShallowCloneExample clone() throws CloneNotSupportedException {
+        return (ShallowCloneExample) super.clone();
+    }
+
+    public static void main(String[] args) {
+        ShallowCloneExample e1 = new ShallowCloneExample();
+        ShallowCloneExample e2 = null;
+        try {
+            e2 = e1.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        e1.set(2, 222);
+        System.out.println(e2.get(2)); // 222
+    }
+}
+```
+深拷贝
+```
+package com.aaachuan.clones;
+
+public class DeepCloneExample implements Cloneable {
+
+    private int[] arr;
+
+    public DeepCloneExample() {
+        arr = new int[10];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = i;
+        }
+    }
+
+    public void set(int index, int value) {
+        arr[index] = value;
+    }
+
+    public int get(int index) {
+        return arr[index];
+    }
+
+    @Override
+    protected DeepCloneExample clone() throws CloneNotSupportedException {
+        DeepCloneExample result = (DeepCloneExample) super.clone();
+//        result.arr = new int[arr.length];
+//        for (int i = 0; i < arr.length; i++) {
+//            result.arr[i] = arr[i];
+//        }
+        result.arr = arr.clone();
+        return result;
+    }
+
+    public static void main(String[] args) {
+        DeepCloneExample e1 = new DeepCloneExample();
+        DeepCloneExample e2 = null;
+        try {
+            e2 = e1.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        e1.set(2, 222);
+        System.out.println(e2.get(2)); // 2
+    }
+}
+```

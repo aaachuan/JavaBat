@@ -26,6 +26,7 @@
 - Reflection
 - Exception
 - Generics
+  - [generics](https://github.com/aaachuan/Java-Bat/blob/master/Java/JavaBasic/Generics/Generics.md)
 - Annotation
 - New highlights in Java version
 

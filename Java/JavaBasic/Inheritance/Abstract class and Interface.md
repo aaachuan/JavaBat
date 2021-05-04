@@ -60,6 +60,8 @@ AbstractClassExample ac1 = new AbstractExtendClassExample();
 接口的成员（字段 + 方法）默认都是 public 的，并且不允许定义为 private 或者 protected。从 Java 9 开始，允许将方法定义为 private，这样就能定义某些复用的代码又不会把方法暴露出去。
 
 接口的字段默认都是 static 和 final 的。
+
+可以选择显式地声明接口中的方法为 public，但是即使不这么做，它们也是 public 的。所以当实现一个接口时，来自接口中的方法必须被定义为 public。否则，它们只有包访问权限，这样在继承时，它们的可访问权限就被降低了，这是 Java 编译器所不允许的。
 ```
 public interface InterfaceExample {
 

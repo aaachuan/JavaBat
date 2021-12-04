@@ -105,19 +105,26 @@ map这个变量，已经在上文判断是否为空指针了，map.get("count")�
 3）Integer转成int，发生拆箱，调用非静态的intValue()方法，而变量实际上为空，那么就会抛出空指针异常
 
 如何避免NullPointerException？
+- 使用常量或确定有值的对象来调用equals
 ```
         Object o = null;
         if("target".equals(o)) {
             //better than if(o.equals("target"))
         }
 ```
-String.ValueOf(xx) better than xx.toString()，因为
+另外，这里推荐使用java.util.Objects#equals(JDK7引入的工具类)
+```
+public static boolean equals(Object a, Object b) {
+        return a == b || a != null && a.equals(b);
+    }
+```
+- String.ValueOf(xx) better than xx.toString()，因为
 ```
     public static String valueOf(Object obj) {
         return (obj == null) ? "null" : obj.toString();
     }
 ```
-使用null安全的方法和库，例如Apache的common lang 3工具类StringUtils
+- 使用null安全的方法和库，例如Apache的common lang 3工具类StringUtils
 ```
     /**
      * <p>Checks if a CharSequence is empty ("") or null.</p>
@@ -142,17 +149,17 @@ String.ValueOf(xx) better than xx.toString()，因为
         return cs == null || cs.length() == 0;
     }
 ```
-返回0长度的数组或集合，而不是null——Joshua Bloch-"effective java",54th.Collections类提供了方便的空List，Set和Map: Collections.EMPTY_LIST，Collections.EMPTY_SET，Collections.EMPTY_MAP
+- 返回0长度的数组或集合，而不是null——Joshua Bloch-"effective java",54th.Collections类提供了方便的空List，Set和Map: Collections.EMPTY_LIST，Collections.EMPTY_SET，Collections.EMPTY_MAP
 ```
     public List<Cheese> getCheeses() {
         return CheesesInStock.isEmpty() ? Collections.EMPTY_LIST : new ArrayList<>(CheesesInStock);
     } 
 ```
-使用annotation@NotNull 和 @Nullable
+- 使用annotation@NotNull 和 @Nullable
 
 另外一个就是本文主题相关的，避免不必要的AutoBoxing and UnBoxing
 
-Java 8的新特性，用Optional取代null
+Java 8的新特性，用Optional取代null——这个比较鸡肋
 
 Ref:
 

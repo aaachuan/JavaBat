@@ -96,3 +96,5 @@ public static Integer valueOf(int i) {
 ```
 
 valueOf方法会自动调用IntegerCache这个类,IntegerCache初始化后内存中就有Integer缓冲池cache[]了。所以new Integer(10)表示在堆内存中创建对象，而Integer v = 10;这句是自动装箱，得到的是Integer缓冲池中的对象，是这句代码return IntegerCache.cache[10 + 128]，明显a和b的地址是不一样的，不是同一个对象。java使用该机制是为了达到最小化数据输入和输出的目的，这是一种优化措施，提高效率。
+
+另外，现在我们知道Integer会缓存-128~127直接的值，所以对于Integer var=?在这个范围内的赋值可以通过==比较判断；但是这个区间外的数据都会在堆产生，并不会复用原有的对象，所以，所有包装类对象之间的值比较，全部使用equals()方法。

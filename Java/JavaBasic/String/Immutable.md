@@ -61,7 +61,8 @@ public final class String
     ...
  }
 ```
-
+JDK9使用byte[]替代char[]的好处是为了节约内存，减少GC次数。
+[JEP 254: Compact Strings](https://openjdk.java.net/jeps/254)
 ## Immutable的好处
 
 ### String pool的需要

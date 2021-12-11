@@ -127,6 +127,7 @@ public static String join(CharSequence delimiter, Iterable<? extends CharSequenc
     }
 ```
 StringJoiner也确实用到了CharSequence#toString()，内置StringBuilder拼接字符串。但是JDK9开始为了优化 java.lang.reflect.Modifier.toString而同时优化了StringJoiner。
+
 [RFR [8051382] Optimize java.lang.reflect.Modifier.toString()](http://mail.openjdk.java.net/pipermail/core-libs-dev/2014-July/027914.html)
 
-[https://openjdk.java.net/jeps/280](JEP 280: Indify String Concatenation)
+[JEP 280: Indify String Concatenation](https://openjdk.java.net/jeps/280)

@@ -161,13 +161,13 @@ n:(Z)V
       66: return
 }
 ```
-照道理，s3的过程应该是String s3 = new StringBuilder("a").append(new String("c")).toString();但是这边反编译却是有两次append...
+s3的过程应该是String s3 = new StringBuilder("a").append(new String("c")).toString();
 
-```
-append两次没错。String的"+"是一种语法糖，本质就是new StringBuilder对象再append()。高频字符串拼接一般推荐直接new StringBuilder再append()，而不是直接使用"+"，因为"+"会大量创建StringBuilder对象，new StringBuilder().append().append()...始终只有一个对象，减少创建对象的成本，效率差太多。
+
+String的"+"是一种语法糖，本质就是new StringBuilder对象再append()。高频字符串拼接一般推荐直接new StringBuilder再append()，而不是直接使用"+"，因为"+"会大量创建StringBuilder对象，new StringBuilder().append().append()...始终只有一个对象，减少创建对象的成本，效率差太多。
 
 另外，StringBuffer的append()方法是线程安全的。
-
+```
     /**
      * Appends the specified {@code CharSequence} to this
      * sequence.

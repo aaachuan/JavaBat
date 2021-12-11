@@ -106,3 +106,27 @@ String 不可变性天生具备线程安全，可以在多个线程中安全地�
 Ref：
 
 [Why String is immutable in Java?](https://www.programcreek.com/2013/04/why-string-is-immutable-in-java/)
+
+### String类source code杂谈
+- join方法
+```
+public static String join(CharSequence delimiter, CharSequence... elements)
+public static String join(CharSequence delimiter, Iterable<? extends CharSequence> elements)
+```
+有意思的是第二个join方法可迭代对象需实现CharSequence接口，join方法可追溯到[(str) String merge/join that is the inverse of String.split()](https://bugs.openjdk.java.net/browse/JDK-5015163)的提案讨论，来源自Perl的join，perl中只指定字符串数组。而使用CharSequence接口代替String可提高泛用性，如StringBuilder或StringBuffer等。
+```
+    public static String join(CharSequence delimiter,
+            Iterable<? extends CharSequence> elements) {
+        Objects.requireNonNull(delimiter);
+        Objects.requireNonNull(elements);
+        StringJoiner joiner = new StringJoiner(delimiter);
+        for (CharSequence cs: elements) {
+            joiner.add(cs);
+        }
+        return joiner.toString();
+    }
+```
+StringJoiner也确实用到了CharSequence#toString()，内置StringBuilder拼接字符串。但是JDK9开始为了优化 java.lang.reflect.Modifier.toString而同时优化了StringJoiner。
+[RFR [8051382] Optimize java.lang.reflect.Modifier.toString()](http://mail.openjdk.java.net/pipermail/core-libs-dev/2014-July/027914.html)
+
+[https://openjdk.java.net/jeps/280](JEP 280: Indify String Concatenation)

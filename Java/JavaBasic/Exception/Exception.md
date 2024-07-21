@@ -81,7 +81,8 @@ Error一般为系统错误或资源耗尽，常见的为内存溢出报错OutOfM
 注意：
 - finally中不要使用return语句。
 - 资源关闭优先使用try-with-resources。
-注意如下:
+
+另外有如下一种情况:
 ```
 Lock lock = new XxxLock();
 preDo();

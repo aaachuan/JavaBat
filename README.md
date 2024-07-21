@@ -26,6 +26,7 @@
 - Reflection
   - [reflection](https://github.com/aaachuan/Java-Bat/blob/master/Java/JavaBasic/Reflection/reflection.md)
 - Exception
+  - [exception](https://github.com/aaachuan/Java-Bat/blob/master/Java/JavaBasic/Exception/Exception.md)
 - Generics
   - [generics](https://github.com/aaachuan/Java-Bat/blob/master/Java/JavaBasic/Generics/Generics.md)
 - Annotation

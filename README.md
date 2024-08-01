@@ -37,6 +37,7 @@
 
 ### JVM
 - [类文件结构](https://github.com/aaachuan/Java-Bat/blob/master/Java/JVM/%E7%B1%BB%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84.md)
+- [垃圾收集](https://github.com/aaachuan/Java-Bat/blob/master/Java/JVM/%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86.md)
 ## Spring
 - Dependency Injection
   - [Dependency Injection](https://github.com/aaachuan/Java-Bat/blob/master/Spring/Dependency%20Injection.md)
